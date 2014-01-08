@@ -42,14 +42,14 @@ module.exports = function(grunt) {
         banner: '/*!\n<%= pkg.name %>\nv<%= site.version %>\n<%= grunt.template.today("mm-dd-yyyy") %>\nMade by <%= pkg.author.name %> - <%= pkg.author.url %>\n*/'
       },
       js: {
-        src: ['assets/vendors/modernizr/modernizr.js', 'assets/js/*.js'],
+        src: ['assets/vendors/modernizr/modernizr.js', 'assets/js/*.js', '!assets/js/script.js'],
         dest: 'assets/js/script.js'
       },
       css: {
         options: {
           separator: '',
         },
-        src: ['assets/css/style.autoprefixed.css' ],
+        src: ['assets/css/style.autoprefixed.css', 'assets/vendors/icomoon/style.css' ],
         dest: 'assets/css/style.css'
       }
     },
@@ -74,13 +74,35 @@ module.exports = function(grunt) {
     */
     copy: {
       // Copy vendors to Jekyll folder
+      js: {
+        files: [
+          { 
+            expand: true, 
+            cwd: './assets/js', 
+            src: ['./script.js'], 
+            dest: 'jekyll/assets/js/' 
+          }
+        ]
+      },
+      // Copy vendors to Jekyll folder
       vendors: {
         files: [
           { 
             expand: true, 
             cwd: './assets/vendors', 
-            src: ['./**/*.*', '!./modernizr/modernizr.js'], 
+            src: ['./**/*.*', '!./modernizr/modernizr.js', '!./icomoon/**/*.*'], 
             dest: 'jekyll/assets/vendors/' 
+          }
+        ]
+      },
+      // Copy vendors to Jekyll folder
+      icomoon: {
+        files: [
+          { 
+            expand: true, 
+            cwd: './assets/vendors/icomoon/fonts', 
+            src: ['*.*'], 
+            dest: 'jekyll/assets/css/fonts' 
           }
         ]
       },
@@ -222,11 +244,11 @@ module.exports = function(grunt) {
     watch: {
       scss: {
         files: ['assets/scss/**/*.scss'],
-        tasks: ['scss']
+        tasks: ['default']
       },
       js: {
         files: ['assets/js/*.js'],
-        tasks: ['js']
+        tasks: ['default']
       },
       jekyll: {
         files: ['jekyll/**/*.markdown', 'jekyll/**/*.md',  'jekyll/**/*.html'],
@@ -248,8 +270,8 @@ module.exports = function(grunt) {
 
 
   grunt.registerTask('scss', ['sass', 'autoprefixer', 'concat:css', 'cssmin']);
-  grunt.registerTask('js', ['jshint', 'modernizr', 'concat:js', 'uglify:js']);
-  grunt.registerTask('vendors', ['copy:vendors']);
+  grunt.registerTask('js', ['jshint', 'concat:js', 'uglify:js', 'copy:js']);
+  grunt.registerTask('vendors', ['copy:icomoon']);
   grunt.registerTask('images', ['copy:images']);
 
   grunt.registerTask('default', ['scss', 'js', 'images','vendors', 'jekyll']);
