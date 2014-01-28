@@ -73,7 +73,7 @@ module.exports = function(grunt) {
     * description: copy icon, js and vendors into the documentation
     */
     copy: {
-      // Copy vendors to Jekyll folder
+      // Copy css to Jekyll folder
       js: {
         files: [
           { 
@@ -81,6 +81,17 @@ module.exports = function(grunt) {
             cwd: './assets/js', 
             src: ['./script.js'], 
             dest: 'jekyll/assets/js/' 
+          }
+        ]
+      },
+      // Copy css to Jekyll folder
+      css: {
+        files: [
+          { 
+            expand: true, 
+            cwd: './assets/css', 
+            src: ['./style.css'], 
+            dest: 'jekyll/assets/css/' 
           }
         ]
       },
@@ -269,7 +280,7 @@ module.exports = function(grunt) {
   });
 
 
-  grunt.registerTask('scss', ['sass', 'autoprefixer', 'concat:css', 'cssmin']);
+  grunt.registerTask('scss', ['sass', 'autoprefixer', 'concat:css', 'cssmin', 'copy:css']);
   grunt.registerTask('js', ['jshint', 'concat:js', 'uglify:js', 'copy:js']);
   grunt.registerTask('vendors', ['copy:icomoon']);
   grunt.registerTask('images', ['copy:images']);
