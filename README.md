@@ -1,4 +1,5 @@
-![](http://minesweeper.thibautdelille.net/readme.png?raw=true "")
+# Minesweeper
+![minesweeper](http://minesweeper.thibautdelille.net/readme.png?raw=true "minesweeper")
 
 Little minesweeper game made with jquery.
 [http://minesweeper.thibautdelille.net](http://minesweeper.thibautdelille.net)
