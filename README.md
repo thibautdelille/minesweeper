@@ -1,7 +1,7 @@
 # Minesweeper
 
 Little minesweeper game made with jquery.
-[http://minesweeper.thiabutdelille.net](http://minesweeper.thiabutdelille.net)
+[http://minesweeper.thibautdelille.net](http://minesweeper.thibautdelille.net)
 
 ### Install the Project
  1. Run `npm install` (it use [Node](http://nodejs.org/) and [npm](https://npmjs.org/))
