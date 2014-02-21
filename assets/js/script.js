@@ -1,7 +1,7 @@
 /*!
 site_template
 v0.1.0
-01-08-2014
+02-21-2014
 Made by Thibaut Delille - http://www.thibautdelille.com
 */(function ($) {
 
